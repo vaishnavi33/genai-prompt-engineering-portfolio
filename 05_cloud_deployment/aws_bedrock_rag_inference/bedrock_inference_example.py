@@ -64,7 +64,6 @@ response = bedrock.invoke_model(
     contentType="application/json",
     accept="application/json"
 )
-
 response_body = json.loads(response["body"].read())
 
 print("\nGenerated Response from AWS Bedrock:\n")
