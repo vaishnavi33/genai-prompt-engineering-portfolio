@@ -1,60 +1,48 @@
 Retrieval-Augmented Generation (RAG) System using LangChain + FAISS
 
+Overview
+This project implements a Retrieval-Augmented Generation (RAG) pipeline designed to reduce hallucinations in Large Language Model (LLM) responses by grounding outputs in authoritative external healthcare data.
+
+The system retrieves relevant context from trusted sources and injects it into the LLM prompt before generation, ensuring responses are evidence-based rather than purely parametric.
+
+---
+
 Problem Statement
-Large Language Models (LLMs) often generate confident but incorrect responses when operating without access to authoritative, up-to-date information. In high-stakes domains such as healthcare, hallucinated responses can be misleading or harmful.
+Large Language Models often generate confident but incorrect answers when they rely solely on internal training data. This risk is amplified in high-stakes domains such as healthcare.
 
-This project implements a Retrieval-Augmented Generation (RAG) pipeline that grounds LLM responses in trusted external knowledge sources, significantly reducing hallucination risk while preserving response quality.
+This project addresses that limitation by combining semantic retrieval with generation, allowing the model to reason over retrieved evidence.
 
+---
 
-Architecture Overview
-The system follows a retrieval-first design pattern:
-
-User Query  
-→ Query Embedding Generation  
-→ FAISS Vector Similarity Search  
-→ Top-K Relevant Document Retrieval  
-→ Context Injection into Prompt  
-→ LLM Response Generation
-
-This architecture ensures that the LLM reasons over retrieved evidence rather than relying solely on parametric knowledge.
-
-
-Data Sources
+## Data Sources
+The pipeline retrieves information from authoritative public health sources:
 - Centers for Disease Control and Prevention (CDC)
 - World Health Organization (WHO)
 
-These sources were selected to ensure authoritative and up-to-date healthcare information.
+These sources were selected to ensure reliability and factual grounding.
 
-Chunking Strategy
-- Chunk size: 500 tokens  
-- Overlap: 50 tokens  
+---
 
-This balances retrieval precision with contextual completeness.
+## System Architecture
+1. Fetch healthcare-related documents from web sources
+2. Clean and preprocess textual content
+3. Split documents into overlapping chunks
+4. Generate embeddings using a sentence-transformer model
+5. Store embeddings in a FAISS vector database
+6. Retrieve top-k relevant chunks for a user query
+7. Provide retrieved context for grounded response generation
 
-Embeddings
-- Model: `sentence-transformers/all-MiniLM-L6-v2`
-- Reason: Lightweight, fast, and effective for semantic similarity search.
+---
 
-Vector Store
-- FAISS (local vector database)
-- Chosen for low-latency retrieval and ease of experimentation.
+## Key Implementation Details
+Chunk Size:** 500 tokens  
+Chunk Overlap:** 50 tokens  
+Embedding Model:** `sentence-transformers/all-MiniLM-L6-v2`  
+Vector Store:** FAISS (local)
 
-Key Design Decisions
-- Retrieval-First Strategy:** Forces grounding before generation to reduce hallucinations.
-- Explicit Chunking Control:** Tuned chunk size and overlap to balance recall and precision.
-- Model-Agnostic Design:** Retrieval and generation components are decoupled, enabling future LLM swaps without architectural changes.
-- Local Vector Store (FAISS):** Selected for fast experimentation and deterministic behavior during development.
-
-
-Limitations
-- FAISS index is local and not horizontally scalable.
-- No reranking or cross-encoder refinement stage.
-- Evaluation is qualitative rather than metric-driven in the current version.
+These parameters were chosen to balance retrieval accuracy with contextual completeness.
 
 
-Future Improvements
-- Migrate vector storage to Pinecone or Weaviate for distributed scalability.
-- Introduce reranking models to improve retrieval precision.
-- Add automated evaluation metrics for faithfulness and relevance.
-- Deploy the pipeline using AWS Bedrock or SageMaker for production inference.
 
+## Example Query
+What should I do if I experience chest discomfort?
