@@ -10,7 +10,7 @@ NOTE:
 """
 
 import json
-import boto3
+import boto3 
 import botocore
 
 # 1. Bedrock Client Initialization
