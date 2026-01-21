@@ -1,43 +1,52 @@
-Portfolio Overview
-This repository showcases enterprise-oriented work in prompt engineering, Retrieval-Augmented Generation (RAG), and responsible Large Language Model (LLM) system design. Each project maps directly to my professional experience and demonstrates production-aware decision-making, safety considerations, and architectural rigor.
+# GenAI Prompt Engineering & LLM Systems Portfolio
+
+# Overview
+This portfolio demonstrates how Large Language Model (LLM) systems can be designed to be reliable, safe, and production-aware through prompt engineering, retrieval-augmented generation (RAG), and explicit evaluation of hallucination risks.
+
+The focus is not on model power alone, but on system design, behavior control, and responsible AI practices .
 
 
-Flagship Use Case: Bias-Aware Healthcare Information Assistant
+# Portfolio Structure & Design Philosophy
 
-Project Overview
-A bias-aware healthcare information assistant designed to deliver reliable, non-diagnostic health information using structured prompt engineering, retrieval-augmented generation (RAG), and bias-aware evaluation techniques. The system prioritizes hallucination reduction, uncertainty handling, and responsible AI behavior in a high-stakes domain.
+# 01 — Prompt Engineering (Behavior Control)
+ `01_prompt_engineering/`
 
-Key Features
-Prompt engineering for safe healthcare information delivery
-- Role confinement and explicit boundary enforcement
-- Uncertainty acknowledgement and escalation logic for high-risk symptoms
+This section demonstrates how structured prompt engineering is used to control LLM behavior in high-stakes domains such as healthcare.
 
-Retrieval-Augmented Generation (RAG)
-  - Grounded responses using authoritative sources (CDC, WHO)
-  - Context injection to reduce reliance on parametric knowledge
+Key focus areas:
+- Role confinement and boundary enforcement
+- Safety-aware response design
+- Bias avoidance and uncertainty handling
 
-Vector-Based Semantic Search
-  - FAISS-powered embedding search for low-latency retrieval
-  - Controlled chunking strategy to balance precision and recall
+This layer ensures the model does not overstep its intended role.
 
-This portfolio directly supports the following professional experience areas:
 
--Prompt Engineering & LLM Behavior Control
-  - Role-based prompting, boundary enforcement, and uncertainty handling  
-  - See: `01_prompt_engineering/role_based_prompting/`
+# 03 — RAG Systems (Grounded Generation)
+ `03_rag_systems/rag_langchain_faiss/`
 
--Retrieval-Augmented Generation (RAG) Pipelines
-  - FAISS-based vector search, controlled chunking, and context grounding  
-  - See: `03_rag_systems/rag_langchain_faiss/`
+This is the flagship system in the portfolio.
 
--Hallucination Reduction & Reliability
-  - Retrieval-first architecture and explicit safety guardrails  
-  - See: `04_evaluation_and_reliability/hallucination_reduction/`
+It demonstrates an end-to-end Retrieval-Augmented Generation (RAG) pipeline that grounds LLM responses in authoritative external data (CDC, WHO) using FAISS-based semantic retrieval.
 
--Bias-Aware and Responsible AI Design
-  - Prompt-level bias avoidance and escalation logic in healthcare use cases  
-  - Demonstrated across prompt engineering and evaluation modules
+Key focus areas:
+- Document ingestion and chunking
+- Embedding-based similarity search
+- Retrieval-first architecture
+- Controlled generation using GPT-2
 
--Production-Aware System Design
-  - Explicit documentation of design decisions, limitations, and future improvements  
-  - Cloud-ready roadmap aligned with enterprise deployment practices
+
+### 04 — Evaluation & Reliability (Trust & Safety)
+ `04_evaluation_and_reliability/hallucination_reduction/`
+
+This section documents how hallucination risks and unsafe behaviors are identified and mitigated through architectural and prompt-level controls.
+
+Key focus areas:
+- Hallucination risk analysis
+- Rule-based safety escalation
+- Qualitative evaluation of outputs
+- Transparent documentation of limitations
+
+## Key Takeaway
+Safe and reliable GenAI systems are built through **intentional design**, not by relying solely on powerful models.
+
+This portfolio demonstrates how prompt engineering, retrieval grounding, and evaluation-aware thinking work together to produce trustworthy LLM applications.
