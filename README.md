@@ -35,7 +35,7 @@ Key focus areas:
 - Controlled generation using GPT-2
 
 
-### 04 — Evaluation & Reliability (Trust & Safety)
+# 04 — Evaluation & Reliability (Trust & Safety)
  `04_evaluation_and_reliability/hallucination_reduction/`
 
 This section documents how hallucination risks and unsafe behaviors are identified and mitigated through architectural and prompt-level controls.
@@ -46,7 +46,22 @@ Key focus areas:
 - Qualitative evaluation of outputs
 - Transparent documentation of limitations
 
-## Key Takeaway
+# Key Takeaway
 Safe and reliable GenAI systems are built through **intentional design**, not by relying solely on powerful models.
 
 This portfolio demonstrates how prompt engineering, retrieval grounding, and evaluation-aware thinking work together to produce trustworthy LLM applications.
+
+---
+
+# Cloud Execution Proof (AWS Bedrock)
+
+ `05_cloud_deployment/aws_bedrock_rag_inference/`
+
+This module demonstrates how the local Retrieval-Augmented Generation (RAG) pipeline can be integrated with a managed cloud LLM service using AWS Bedrock.
+
+Key highlights:
+- End-to-end RAG context handoff to Bedrock-hosted LLMs
+- Safe, constrained prompt construction for healthcare scenarios
+- Clean separation between local retrieval and cloud-based generation
+- Minimal, inference-only design aligned with enterprise GenAI practices
+
