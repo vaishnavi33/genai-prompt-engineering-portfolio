@@ -1,30 +1,88 @@
-Prompt Design Patterns for High-Stakes Domains (Healthcare Case Study)
+# Prompt Design Patterns
 
-Overview
-Prompt engineering plays a critical role in controlling Large Language Model (LLM) behavior, particularly in high-stakes domains such as healthcare where hallucinations, overconfidence, or biased outputs can cause real harm.
+This document outlines prompt design patterns used to control LLM behavior
+in production-oriented GenAI systems.
 
-This document presents a set of prompt design patterns used to build a safe, reliable, and bias-aware healthcare information assistant**, focusing on behavior control rather than task performance alone.
-
-
-Design Goals
-The prompt patterns in this project were designed to achieve the following goals:
-
-- Prevent unauthorized medical diagnosis or treatment recommendations
-- Reduce hallucinated or speculative responses
-- Enforce uncertainty acknowledgement when information is insufficient
-- Encourage escalation to professional help for high-risk symptoms
-- Avoid demographic or socioeconomic bias in responses
+These patterns treat prompts as behavioral control mechanisms, not
+just input formatting.
 
 
-Core Prompt Design Patterns
-1. Role Confinement Pattern
-The model is explicitly instructed to operate within a narrowly defined role.
+
+# 1. Role Definition Pattern
+
+Purpose:  
+Explicitly define what the model is and is not allowed to do.
+
+Why it matters:
+Without a clear role, LLMs tend to overstep authority and hallucinate.
+Example:
+
+- Defining the model as a *non-diagnostic healthcare information assistant*
+- Explicitly prohibiting diagnosis and treatment advice
+
+
+## 2. Constraint-First Pattern
 
 Purpose:
-Prevent role drift and overreach into medical authority.
+State non-negotiable constraints before task instructions.
+
+Why it matters: 
+Safety and boundary rules should override task completion.
 
 Example:
-“You are a healthcare information assistant. You are not a medical professional.”
+- “You must NOT diagnose conditions”
+- “You must NOT invent information outside the provided context”
 
-Impact:
-Reduces overconfident language and discourages diagnostic statements.
+
+# 3. Context-Grounded Response Pattern
+
+Purpose:
+Force the model to rely only on retrieved or provided context.
+
+Why it matters:
+Reduces hallucination by limiting reliance on parametric memory.
+
+Example: 
+- “Base responses ONLY on the provided context”
+- “If context is insufficient, explicitly state that”
+
+---
+
+# 4. Uncertainty Acknowledgment Pattern
+
+Purpose:
+Encourage the model to admit uncertainty instead of fabricating answers.
+
+Why it matters:
+LLMs default to confident language even when unsure.
+
+Example Phrases:  
+- “The available information does not allow for a definitive conclusion”
+- “Based on the provided context…”
+
+
+
+## 5. Failure-Aware Prompting Pattern
+
+Purpose:  
+Design prompts with expected failure modes in mind.
+
+Why it matters: 
+Prompt failures are inevitable; planning for them improves reliability.
+
+Example: 
+- Clear refusal instructions
+- Safe fallback responses
+- Escalation guidance
+
+---
+
+## Summary
+
+These prompt patterns are used consistently across the system to improve:
+- Safety
+- Reliability
+- Predictability
+- Ease of iteration
+
+Prompts are treated as versioned, testable artifacts**, not one-off text.

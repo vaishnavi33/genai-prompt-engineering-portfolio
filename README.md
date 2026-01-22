@@ -11,14 +11,16 @@ The focus is not on model power alone, but on system design, behavior control, a
 # 01 — Prompt Engineering (Behavior Control)
  `01_prompt_engineering/`
 
-This section demonstrates how structured prompt engineering is used to control LLM behavior in high-stakes domains such as healthcare.
+This repository showcases practical prompt engineering techniques used to control, constrain, and evaluate Large Language Model (LLM) behavior in real-world systems.
 
-Key focus areas:
-- Role confinement and boundary enforcement
-- Safety-aware response design
-- Bias avoidance and uncertainty handling
+The focus is on:
+- Role-based prompt design
+- Safety and guardrail prompts
+- Hallucination mitigation
+- Prompt failure analysis and iteration
+- Prompt integration within Retrieval-Augmented Generation (RAG) systems
 
-This layer ensures the model does not overstep its intended role.
+Rather than treating prompts as static text, this portfolio demonstrates how prompts function as a behavioral control layer within production-oriented GenAI systems.
 
 
 # 03 — RAG Systems (Grounded Generation)
